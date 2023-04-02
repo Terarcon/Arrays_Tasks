@@ -4,28 +4,38 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-const int ROWS = 3;
-const int COLS = 4;
+#define delimiter "\n---------------------------\n"
+
+const int ROWS = 5;
+const int COLS = 6;
 
 void FillRand(int array[], const int n, int minRand = 0, int maxRand = 100);
 void FillRand(double array[], const int n, int minRand = 0, int maxRand = 100);
 void FillRand(char array[], const int n, int minRand = 0, int maxRand = 100);
-void FillRand(int array[ROWS][COLS], const int ROWS, const int COLS);
+void FillRand(int array[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
+void FillRand(double array[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
+void FillRand(char array[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
 
 void Print(int array[], const int n);
 void Print(double array[], const int n);
 void Print(char array[], const int n);
 void Print(int array[ROWS][COLS], const int ROWS, const int COLS);
+void Print(double array[ROWS][COLS], const int ROWS, const int COLS);
+void Print(char array[ROWS][COLS], const int ROWS, const int COLS);
 
 int Sum(const int array[], const int n);
 int Sum(const double array[], const int n);
 int Sum(const char array[], const int n);
 int Sum(const int array[ROWS][COLS], const int ROWS, const int COLS);
+int Sum(const double array[ROWS][COLS], const int ROWS, const int COLS);
+int Sum(const char array[ROWS][COLS], const int ROWS, const int COLS);
 
 double Avg(const int array[], const int n);
 double Avg(const double array[], const int n);
 double Avg(const char array[], const int n);
 double Avg(const int array[ROWS][COLS], const int ROWS, const int COLS);
+double Avg(const double array[ROWS][COLS], const int ROWS, const int COLS);
+double Avg(const char array[ROWS][COLS], const int ROWS, const int COLS);
 
 int MinValueIn(const int array[], const int n);
 int MinValueIn(const double array[], const int n);
@@ -46,14 +56,21 @@ void shiftRight(char array[], const int n, int number_of_shifts);
 void UniqueRand(int array[], const int n);
 void UniqueRand(double array[], const int n);
 void UniqueRand(char array[], const int n);
+void UniqueRand(int array[ROWS][COLS], const int ROWS, const int COLS);
+void UniqueRand(double array[ROWS][COLS], const int ROWS, const int COLS);
+void UniqueRand(char array[ROWS][COLS], const int ROWS, const int COLS);
 
 void Search(int array[], const int n);
 void Search(double array[], const int n);
 void Search(char array[], const int n);
+void Search(int array[ROWS][COLS], const int ROWS, const int COLS);
+void Search(double array[ROWS][COLS], const int ROWS, const int COLS);
+void Search(char array[ROWS][COLS], const int ROWS, const int COLS);
 
 void Sort(int array[], const int n);
 void Sort(char array[], const int n);
 void Sort(int array[ROWS][COLS], const int ROWS, const int COLS);
+void Sort(char array[ROWS][COLS], const int ROWS, const int COLS);
 
 //#define TASKS
 
@@ -139,12 +156,18 @@ void main()
 #endif // ARRAYS1
 
 	int i_arr_2[ROWS][COLS];
-	FillRand(i_arr_2, ROWS, COLS);
+	FillRand(i_arr_2, ROWS, COLS, 10, 20);
 	Print(i_arr_2, ROWS, COLS);
 	cout << "Sum of array elements: " << Sum(i_arr_2, ROWS, COLS) << endl;
 	cout << "Sum of array elements: " << Avg(i_arr_2, ROWS, COLS) << endl;
-	Sort(i_arr_2, ROWS, COLS);
-	Print(i_arr_2, ROWS, COLS);
+	Search(i_arr_2, ROWS, COLS);
+
+	//Sort(i_arr_2, ROWS, COLS);
+	//Print(i_arr_2, ROWS, COLS);
+
+	//cout << delimiter << endl;
+	//UniqueRand(i_arr_2, ROWS, COLS);
+	//Print(i_arr_2, ROWS, COLS);
 }
 
 #ifdef FILLRAND
@@ -169,13 +192,34 @@ void FillRand(char array[], const int n, int minRand, int maxRand)
 		array[i] = rand() % (maxRand - minRand) + minRand;
 	}
 }
-void FillRand(int array[ROWS][COLS], const int ROWS, const int COLS)
+
+void FillRand(int array[ROWS][COLS], const int ROWS, const int COLS, int minRand, int maxRand)
 {
 	for (int i = 0; i < ROWS; i++)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			array[i][j] = rand() % 100;
+			array[i][j] = rand() % (maxRand - minRand) + minRand;
+		}
+	}
+}
+void FillRand(double array[ROWS][COLS], const int ROWS, const int COLS, int minRand, int maxRand)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			array[i][j] = rand() % (maxRand - minRand) + minRand;
+		}
+	}
+}
+void FillRand(char array[ROWS][COLS], const int ROWS, const int COLS, int minRand, int maxRand)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			array[i][j] = rand() % (maxRand - minRand) + minRand;
 		}
 	}
 }
@@ -206,7 +250,30 @@ void Print(char array[], const int n)
 	}
 	cout << endl;
 }
+
 void Print(int array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			cout << array[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
+void Print(double array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			cout << array[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
+void Print(char array[ROWS][COLS], const int ROWS, const int COLS)
 {
 	for (int i = 0; i < ROWS; i++)
 	{
@@ -247,7 +314,32 @@ int Sum(const char array[], const int n)
 	}
 	return sum;
 }
+
 int Sum(const int array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int sum = 0;
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			sum += array[i][j];
+		}
+	}
+	return sum;
+}
+int Sum(const double array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int sum = 0;
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			sum += array[i][j];
+		}
+	}
+	return sum;
+}
+int Sum(const char array[ROWS][COLS], const int ROWS, const int COLS)
 {
 	int sum = 0;
 	for (int i = 0; i < ROWS; i++)
@@ -274,7 +366,16 @@ double Avg(const char array[], const int n)
 {
 	return (double)Sum(array, n) / n;
 }
+
 double Avg(const int array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	return(double)Sum(array, ROWS, COLS) / (ROWS * COLS);
+}
+double Avg(const double array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	return(double)Sum(array, ROWS, COLS) / (ROWS * COLS);
+}
+double Avg(const char array[ROWS][COLS], const int ROWS, const int COLS)
 {
 	return(double)Sum(array, ROWS, COLS) / (ROWS * COLS);
 }
@@ -378,6 +479,30 @@ void Sort(char array[], const int n)
 	}
 }
 void Sort(int array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int iter = 0;
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			for (int k = i; k < ROWS; k++)
+			{
+				for (int l = k == i ? j + 1 : 0; l < COLS; l++)
+				{
+					if (array[k][l] < array[i][j])
+					{
+						array[i][j] ^= array[k][l];
+						array[k][l] ^= array[i][j];
+						array[i][j] ^= array[k][l];
+					}
+					iter++;
+				}
+			}
+		}
+	}
+	cout << "Массив отсортирован за " << iter << " итераций" << endl;
+}
+void Sort(char array[ROWS][COLS], const int ROWS, const int COLS)
 {
 	int iter = 0;
 	for (int i = 0; i < ROWS; i++)
@@ -527,6 +652,88 @@ void UniqueRand(char array[], const int n)
 		}
 	}
 }
+
+void UniqueRand(int array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			bool unique;
+			do
+			{
+				array[i][j] = rand() % (ROWS * COLS);
+				unique = true;
+				for (int k = 0; k <= i; k++)
+				{
+					for (int l = 0; l < (k == i ? j : COLS); l++)
+					{
+						if (array[i][j] == array[k][l])
+						{
+							unique = false;
+							break;
+						}
+					}
+					if (!unique) break;
+				}
+			} while (!unique);
+		}
+	}
+}
+void UniqueRand(double array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			bool unique;
+			do
+			{
+				array[i][j] = rand() % (ROWS * COLS);
+				unique = true;
+				for (int k = 0; k <= i; k++)
+				{
+					for (int l = 0; l < (k == i ? j : COLS); l++)
+					{
+						if (array[i][j] == array[k][l])
+						{
+							unique = false;
+							break;
+						}
+					}
+					if (!unique) break;
+				}
+			} while (!unique);
+		}
+	}
+}
+void UniqueRand(char array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			bool unique;
+			do
+			{
+				array[i][j] = rand() % (ROWS * COLS);
+				unique = true;
+				for (int k = 0; k <= i; k++)
+				{
+					for (int l = 0; l < (k == i ? j : COLS); l++)
+					{
+						if (array[i][j] == array[k][l])
+						{
+							unique = false;
+							break;
+						}
+					}
+					if (!unique) break;
+				}
+			} while (!unique);
+		}
+	}
+}
 #endif //UNIQUERAND
 
 #ifdef SEARCH
@@ -621,6 +828,121 @@ void Search(char array[], const int n)
 		if (count)
 		{
 			cout << "Value " << array[i] << " had been seen " << count << " times" << endl;
+		}
+	}
+}
+
+void Search(int array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			int met_before = false;
+			for (int k = 0; k <= i; k++)
+			{
+				for (int l = 0; l < (k == i ? j : COLS); l++)
+				{
+					if (array[i][j] == array[k][l])
+					{
+						met_before = true;
+						break;
+					}
+				}
+				if (met_before) break;
+			}
+			//if element met earlier, then we don't need to show it again
+			if (met_before) continue;
+			//if element didn't meet earlier, then we need to know how
+			//any times it repeated
+			int count = 0;
+			for (int k = i; k < ROWS; k++)
+			{
+				for (int l = k == i ? j + 1 : 0; l < COLS; l++)
+				{
+					if (array[i][j] == array[k][l])
+					{
+						count++;
+					}
+				}
+			}
+			if (count) printf("Значение %i повторяется %i раз\n", array[i][j], count);
+		}
+	}
+}
+void Search(double array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			int met_before = false;
+			for (int k = 0; k <= i; k++)
+			{
+				for (int l = 0; l < (k == i ? j : COLS); l++)
+				{
+					if (array[i][j] == array[k][l])
+					{
+						met_before = true;
+						break;
+					}
+				}
+				if (met_before) break;
+			}
+			//if element met earlier, then we don't need to show it again
+			if (met_before) continue;
+			//if element didn't meet earlier, then we need to know how
+			//any times it repeated
+			int count = 0;
+			for (int k = i; k < ROWS; k++)
+			{
+				for (int l = k == i ? j + 1 : 0; l < COLS; l++)
+				{
+					if (array[i][j] == array[k][l])
+					{
+						count++;
+					}
+				}
+			}
+			if (count) printf("Значение %i повторяется %i раз\n", array[i][j], count);
+		}
+	}
+}
+void Search(char array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			int met_before = false;
+			for (int k = 0; k <= i; k++)
+			{
+				for (int l = 0; l < (k == i ? j : COLS); l++)
+				{
+					if (array[i][j] == array[k][l])
+					{
+						met_before = true;
+						break;
+					}
+				}
+				if (met_before) break;
+			}
+			//if element met earlier, then we don't need to show it again
+			if (met_before) continue;
+			//if element didn't meet earlier, then we need to know how
+			//any times it repeated
+			int count = 0;
+			for (int k = i; k < ROWS; k++)
+			{
+				for (int l = k == i ? j + 1 : 0; l < COLS; l++)
+				{
+					if (array[i][j] == array[k][l])
+					{
+						count++;
+					}
+				}
+			}
+			if (count) printf("Значение %i повторяется %i раз\n", array[i][j], count);
 		}
 	}
 }
