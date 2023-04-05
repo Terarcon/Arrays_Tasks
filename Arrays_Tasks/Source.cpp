@@ -40,10 +40,16 @@ double Avg(const char array[ROWS][COLS], const int ROWS, const int COLS);
 int MinValueIn(const int array[], const int n);
 int MinValueIn(const double array[], const int n);
 int MinValueIn(const char array[], const int n);
+int MinValueIn(const int array[ROWS][COLS], const int ROWS, const int COLS);
+int MinValueIn(const double array[ROWS][COLS], const int ROWS, const int COLS);
+int MinValueIn(const char array[ROWS][COLS], const int ROWS, const int COLS);
 
 int MaxValueIn(const int array[], const int n);
 int MaxValueIn(const double array[], const int n);
 int MaxValueIn(const char array[], const int n);
+int MaxValueIn(const int array[ROWS][COLS], const int ROWS, const int COLS);
+int MaxValueIn(const double array[ROWS][COLS], const int ROWS, const int COLS);
+int MaxValueIn(const char array[ROWS][COLS], const int ROWS, const int COLS);
 
 void shiftLeft(int array[], const int n, int number_of_shifts);
 void shiftLeft(double array[], const int n, int number_of_shifts);
@@ -168,6 +174,9 @@ void main()
 	//cout << delimiter << endl;
 	//UniqueRand(i_arr_2, ROWS, COLS);
 	//Print(i_arr_2, ROWS, COLS);
+
+	cout << "Min value: " << MinValueIn(i_arr_2, ROWS, COLS) << endl;
+	cout << "Max value: " << MaxValueIn(i_arr_2, ROWS, COLS) << endl;
 }
 
 #ifdef FILLRAND
@@ -412,6 +421,46 @@ int MinValueIn(const char array[], const int n)
 	}
 	return min;
 }
+
+int MinValueIn(const int array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int min = array[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (array[i][j] < min)
+				min = array[i][j];
+		}
+	}
+	return min;
+}
+int MinValueIn(const double array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int min = array[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (array[i][j] < min)
+				min = array[i][j];
+		}
+	}
+	return min;
+}
+int MinValueIn(const char array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int min = array[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (array[i][j] < min)
+				min = array[i][j];
+		}
+	}
+	return min;
+}
 #endif //MINVALUEIN
 
 #ifdef MAXVALUEIN
@@ -442,6 +491,46 @@ int MaxValueIn(const char array[], const int n)
 	{
 		if (array[i] > max)
 			max = array[i];
+	}
+	return max;
+}
+
+int MaxValueIn(const int array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int max = array[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (array[i][j] > max)
+				max = array[i][j];
+		}
+	}
+	return max;
+}
+int MaxValueIn(const double array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int max = array[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (array[i][j] > max)
+				max = array[i][j];
+		}
+	}
+	return max;
+}
+int MaxValueIn(const char array[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int max = array[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (array[i][j] > max)
+				max = array[i][j];
+		}
 	}
 	return max;
 }
