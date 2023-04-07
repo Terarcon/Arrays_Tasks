@@ -6,8 +6,8 @@ using std::endl;
 
 #define delimiter "\n---------------------------\n"
 
-const int ROWS = 5;
-const int COLS = 6;
+const int ROWS = 3;
+const int COLS = 3;
 
 void FillRand(int array[], const int n, int minRand = 0, int maxRand = 100);
 void FillRand(double array[], const int n, int minRand = 0, int maxRand = 100);
@@ -54,6 +54,9 @@ int MaxValueIn(const char array[ROWS][COLS], const int ROWS, const int COLS);
 void shiftLeft(int array[], const int n, int number_of_shifts);
 void shiftLeft(double array[], const int n, int number_of_shifts);
 void shiftLeft(char array[], const int n, int number_of_shifts);
+void shiftLeft(int array[ROWS][COLS], const int ROWS, const int COLS, int number_of_shifts);
+//void shiftLeft(double array[ROWS][COLS], const int ROWS, const int COLS, int number_of_shifts);
+//void shiftLeft(char array[ROWS][COLS], const int ROWS, const int COLS, int number_of_shifts);
 
 void shiftRight(int array[], const int n, int number_of_shifts);
 void shiftRight(double array[], const int n, int number_of_shifts);
@@ -177,6 +180,11 @@ void main()
 
 	cout << "Min value: " << MinValueIn(i_arr_2, ROWS, COLS) << endl;
 	cout << "Max value: " << MaxValueIn(i_arr_2, ROWS, COLS) << endl;
+
+	int number_of_shifts;
+	cout << "Enter number of shifts: "; cin >> number_of_shifts;
+	shiftLeft(i_arr_2, ROWS, COLS, number_of_shifts);
+	Print(i_arr_2, ROWS, COLS);
 }
 
 #ifdef FILLRAND
@@ -652,6 +660,22 @@ void shiftLeft(char array[], const int n, int number_of_shifts)
 			array[i] = array[i + 1];
 		}
 		array[n - 1] = buffer;
+	}
+}
+
+void shiftLeft(int array[ROWS][COLS], const int ROWS, const int COLS, int number_of_shifts)
+{
+	for (int i = 0; i < number_of_shifts; i++)
+	{
+		int buffer = array[0][0];
+		for (int i = 0; i < ROWS; i++)
+		{
+			for (int j = 0; j < COLS; j++)
+			{
+				array[i][j] = array[i + 1][j + 1];
+			}
+		}
+		array[ROWS - 1][COLS - 1] = buffer;
 	}
 }
 #endif //SHIFTLEFT
