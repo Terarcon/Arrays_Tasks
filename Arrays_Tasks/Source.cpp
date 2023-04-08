@@ -95,5 +95,16 @@ void main()
 
 	cout << "Min value: " << MinValueIn(i_arr_2, ROWS, COLS) << endl;
 	cout << "Max value: " << MaxValueIn(i_arr_2, ROWS, COLS) << endl;
+
+	int number_of_shifts;
+	cout << "Enter number of shifts: "; cin >> number_of_shifts;
+	shiftLeft(i_arr_2, ROWS, COLS, number_of_shifts);
+	Print(i_arr_2, ROWS, COLS);
+
+	cout << delimiter << endl;;
+
+	cout << "Enter number of right shifts: "; cin >> number_of_shifts;
+	shiftRight(i_arr_2, ROWS, COLS, number_of_shifts);
+	Print(i_arr_2, ROWS, COLS);
 #endif // ARRAYS2
 }
