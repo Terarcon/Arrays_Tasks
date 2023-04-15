@@ -16,12 +16,10 @@ void FillRand(int array[ROWS][COLS], const int ROWS, const int COLS, int minRand
 void FillRand(double array[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
 void FillRand(char array[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
 
-void Print(int array[], const int n);
-void Print(double array[], const int n);
-void Print(char array[], const int n);
-void Print(int array[ROWS][COLS], const int ROWS, const int COLS);
-void Print(double array[ROWS][COLS], const int ROWS, const int COLS);
-void Print(char array[ROWS][COLS], const int ROWS, const int COLS);
+template<typename T>
+void Print(T array[], const int n);
+template<typename T>
+void Print(T array[ROWS][COLS], const int ROWS, const int COLS);
 
 int Sum(const int array[], const int n);
 int Sum(const double array[], const int n);
@@ -246,23 +244,8 @@ void FillRand(char array[ROWS][COLS], const int ROWS, const int COLS, int minRan
 #endif // FILLRAND
 
 #ifdef PRINT
-void Print(int array[], const int n)
-{
-	for (int i = 0; i < n; i++)
-	{
-		cout << array[i] << "\t";
-	}
-	cout << endl;
-}
-void Print(double array[], const int n)
-{
-	for (int i = 0; i < n; i++)
-	{
-		cout << array[i] << "\t";
-	}
-	cout << endl;
-}
-void Print(char array[], const int n)
+template<typename T>
+void Print(T array[], const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -271,29 +254,8 @@ void Print(char array[], const int n)
 	cout << endl;
 }
 
-void Print(int array[ROWS][COLS], const int ROWS, const int COLS)
-{
-	for (int i = 0; i < ROWS; i++)
-	{
-		for (int j = 0; j < COLS; j++)
-		{
-			cout << array[i][j] << "\t";
-		}
-		cout << endl;
-	}
-}
-void Print(double array[ROWS][COLS], const int ROWS, const int COLS)
-{
-	for (int i = 0; i < ROWS; i++)
-	{
-		for (int j = 0; j < COLS; j++)
-		{
-			cout << array[i][j] << "\t";
-		}
-		cout << endl;
-	}
-}
-void Print(char array[ROWS][COLS], const int ROWS, const int COLS)
+template<typename T>
+void Print(T array[ROWS][COLS], const int ROWS, const int COLS)
 {
 	for (int i = 0; i < ROWS; i++)
 	{
